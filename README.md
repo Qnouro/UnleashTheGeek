@@ -43,4 +43,4 @@ While the program gave some very satisfactory results, it struggled a lot agains
 
 ### Dodge algorithm
 
-I managed to come up with a dodging algorithm (but sadly didn't have enough time to implement it) in order to tackle the second part of the problem. The idea is to keep a safe distance between the bots by realizing the condition $manhatan_distance(bot_i, bot_j) >= 3; i != j$. The process would go into multiple passes over the bots. # TODO: explain the algorithm
+I managed to come up with a dodging algorithm (but sadly didn't have enough time to implement it) in order to tackle the second part of the problem. The idea is to keep a safe distance between the bots by realizing the condition $manhatan_distance(bot_i, bot_j) >= 3; i != j$. The process would go into multiple passes over the bots. # TODO: explain the algorithm and simplex method
