@@ -22,7 +22,7 @@
 
 This repository contains the code used on the 10 days hackathon named "Unleash The Geek" proposed by Amadeus starting on October 4th 2019.
 This code allowed me to peak at rank #57, and ending the competition at rank #169 out of 2166 participants.
-
+Note: The hackathon required the use of a single file.
 ## The hackathon's goal
 
 The hackathon is a bot programming competition. Each player has 5 bots to command. A map containing hidden Amadeusium is generated at the beginning of the game, and both players can use radars to detect and mine them. The players also have traps at their disposal in order to destroy enemy bots when triggered. The traps can only be triggered by digging or if a neighbooring trap explodes; stepping on them does not trigger them.
