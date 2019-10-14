@@ -11,7 +11,7 @@ The hackathon is a bot programming competition. Each player has 5 bots to comman
 
 ## Strategies
 
-The strategy used relied heavily on 
+The strategy used relied heavily on disabling the enemy bots, and having an optimized mining.
 
 ### Radar placement
 
