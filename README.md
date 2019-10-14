@@ -1,5 +1,23 @@
 # UnleashTheGeek
 
+# Table of Contents 
+
+1.[About](#about)  
+
+2.[The hackathon's goal](#the-hackathons-goal) 
+  1. [Strategies](#strategies)
+  2. [Radar placement](#radar-placement)
+  3. [Mining](#mining)
+  4. [Traps](#traps)
+  
+3.[What could have been improved](#what-could-have-been-improved)
+  1. [Movement algorithm](#movement-algorithm)
+  2. [Simplex method](#simplex-method)
+  3. [Custom algorithm](#custom-algorithm)
+  4. [The wall problem](#the-wall-problem)
+
+
+
 ## About
 
 This repository contains the code used on the 10 days hackathon named "Unleash The Geek" proposed by Amadeus starting on October 4th 2019.
@@ -41,6 +59,25 @@ When detonating, the traps could cause a chain reaction. This way, at every turn
 
 While the program gave some very satisfactory results, it struggled a lot against bots that would "wall" the first column of the map with bombs, or against other aggressive programs. For these reasons, the bots' movements could be improved if we see that the enemy is also using traps.
 
-### Dodge algorithm
+### Movement algorithm
 
-I managed to come up with a dodging algorithm (but sadly didn't have enough time to implement it) in order to tackle the second part of the problem. The idea is to keep a safe distance between the bots by realizing the condition $manhatan_distance(bot_i, bot_j) >= 3; i != j$. The process would go into multiple passes over the bots. # TODO: explain the algorithm and simplex method
+I managed to come up with a movement algorithm (but sadly didn't have enough time to implement it) in order to tackle the second part of the problem. The idea is to keep a safe distance between the bots by realizing the following condition: 
+<a href="https://latex.codecogs.com/gif.latex?manhattan\_distance(bot_i,%20bot_j)%20\geq%203;%20i%20\neq%20j" target="_blank"><img src="https://latex.codecogs.com/gif.latex?manhattan\_distance(bot_i,%20bot_j)%20\geq%203;%20i%20\neq%20j" /></a>.
+
+#### Simplex method
+
+The first idea would be to solve a simplex problem. We define a direction vector which corresponds to the direction the bot is heading to for the next turn, to which we add a deviation. We are looking forward to minimizing the sum of all deviations in a turn. As the manhattan distance relies on the absolute value, we can still trick the inequations and end up with a linear problem.
+
+This solution however is not suitable for our case due to the time limitations (less than 50ms for every turn).
+
+#### Custom algorithm
+
+Another method would be to order the bots based on their y coordinate.
+Starting from the first bot, if he doesn't verify the condition with the 2nd bot, we deviate him to the top of the map. We do the same for all the other bots. However, deviating the ith bot would force us to reverify all the previous bots as they might not verify the condition anymore. We end up with several passes, which the complexity is squared.
+If the first bot cannot go up anymore, we can either choose to reduce its "speed" (by travelling less than 4 cells) and keep deviating, or we could redo the algorithm starting from the last bot, and deviating downward.
+In this process, we do not consider the bots that are digging as they cannot move (and hence, cannot deviate). In this case, we just have to cut the algorithm(e.g: if the 3rd bot is mining, we apply our algorithm on the 2 first bots and the 2 last bots). 
+Another problematic case is if the 2nd and 4th bot are static and are blocking the 3rd bot. In this case, we are forced to choose a bot to deviate from and another to get close to. Despite risking exploding, it shall still be on average more beneficial to take the risk from time to time.
+
+### The wall problem
+
+As stated earlier, the previous algorithm does not tackle the bomb wall problem. For the latter, a good idea would be to go trigger the wall and trade with the enemy who has already wasted several rounds building the wall. This idea wasn't digged in further due to lack of time.
