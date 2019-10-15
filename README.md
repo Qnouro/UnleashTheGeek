@@ -41,9 +41,9 @@ The idea behind taking the farthest ore's position comes from noticing that ores
 
 ### Mining
 
-The closest bot to the first radar position will be in charge of placing it. During this time, the 4 other bots will go dig in some given positions near the High Quarter.
+The closest bot to the first radar position will be in charge of placing it. During this time, the 4 other bots will go dig in some given positions near the HeadQuarters.
 
-In order to optimize the mining process, we have to place the radars as fast as possible. For this reason, the bots can be assigned the "radar bot" role when a radar is available and they are in the High Quarter.
+In order to optimize the mining process, we have to place the radars as fast as possible. For this reason, the bots can be assigned the "radar bot" role when a radar is available and they are in the HeadQuarters.
 
 If no ore is located, the bots will go back to the first plan, waiting for more ores to be located. 
 
